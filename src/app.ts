@@ -1,9 +1,11 @@
 import 'reflect-metadata';
-import {createExpressServer} from 'routing-controllers';
-import {env} from './env';
+import {bootstrap} from 'lib/loaders';
+import {winstonLoader} from 'loaders/winston-loader';
+import {expressServerLoader} from 'loaders/express-server-loader';
 
-const app = createExpressServer({
-  controllers: env.app.dirs.controllers,
+bootstrap({
+  loaders: [
+    winstonLoader,
+    expressServerLoader,
+  ],
 });
-
-app.listen(3000);

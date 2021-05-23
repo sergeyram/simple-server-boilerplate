@@ -19,7 +19,7 @@
     "import/resolver": {
       "node": {
         "extensions": [".js", ".ts"],
-        "moduleDirectory": ["node_modules", "src/"]
+        "moduleDirectory": ["node_modules", "./"]
       }
     }
   },
@@ -29,7 +29,8 @@
       "error",
       "never"
     ],
-    "no-unused-vars": [
+    "no-unused-vars": "off",
+    "@typescript-eslint/no-unused-vars": [
       "warn",
       {
         "argsIgnorePattern": "^_"

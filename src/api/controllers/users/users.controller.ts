@@ -1,11 +1,15 @@
 import {
   Controller, Param, Body, Get, Post, Put, Delete,
 } from 'routing-controllers';
+import {Logger} from 'lib/logger';
+
+const log = new Logger(__filename);
 
 @Controller()
-export class UserController {
+export class UsersController {
   @Get('/users')
   getAll(): string {
+    log.info('CALLED: This action returns all users');
     return 'This action returns all users';
   }
 
@@ -15,12 +19,12 @@ export class UserController {
   }
 
   @Post('/users')
-  post(@Body() user: any): string {
+  post(@Body() user: unknown): string {
     return 'Saving user...';
   }
 
   @Put('/users/:id')
-  put(@Param('id') id: number, @Body() user: any): string {
+  put(@Param('id') id: number, @Body() user: unknown): string {
     return 'Updating a user...';
   }
 
