@@ -1,4 +1,7 @@
+import {Logger} from 'lib/logger';
 import {BootstrapConfig, BootstrapSettings} from './types';
+
+const log = new Logger(__filename);
 
 export function bootstrapApp(config: BootstrapConfig): BootstrapSettings {
   const settings: BootstrapSettings = {
@@ -15,8 +18,7 @@ export function bootstrapApp(config: BootstrapConfig): BootstrapSettings {
     try {
       loader(settings);
     } catch (e) {
-      // eslint-disable-next-line no-console
-      console.error(e.message);
+      log.error(e.message);
     }
   });
 
