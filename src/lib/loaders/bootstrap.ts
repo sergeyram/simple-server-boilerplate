@@ -1,6 +1,6 @@
 import {BootstrapConfig, BootstrapSettings} from './types';
 
-export function bootstrap(config: BootstrapConfig): void {
+export function bootstrapApp(config: BootstrapConfig): BootstrapSettings {
   const settings: BootstrapSettings = {
     setData(key, data) {
       this[key] = data;
@@ -19,4 +19,6 @@ export function bootstrap(config: BootstrapConfig): void {
       console.error(e.message);
     }
   });
+
+  return settings;
 }

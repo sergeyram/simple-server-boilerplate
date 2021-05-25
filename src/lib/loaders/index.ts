@@ -3,4 +3,4 @@ export {
   BootstrapSettings,
   BootstrapConfig,
 } from './types';
-export {bootstrap} from './bootstrap';
+export {bootstrapApp} from './bootstrap';
