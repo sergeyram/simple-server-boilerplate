@@ -49,6 +49,9 @@
       "js",
       "json"
     ],
+    "setupFilesAfterEnv": [
+      "./test/unit/setup.ts"
+    ],
     "testEnvironment": "node",
     "moduleNameMapper": {
       "^src/(.*)$": "<rootDir>/src/$1",
