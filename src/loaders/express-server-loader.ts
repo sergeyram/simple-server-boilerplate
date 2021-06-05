@@ -8,6 +8,10 @@ export const expressServerLoader: BootstrapLoader = (settings) => {
     controllers: env.app.dirs.controllers,
   });
 
-  app.listen(3000);
+  if (!env.isTest) {
+    const server = app.listen(3000);
+    settings.setData('express_server', server);
+  }
+
   settings.setData<Application>('express_app', app);
 };

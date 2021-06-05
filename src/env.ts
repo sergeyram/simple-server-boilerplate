@@ -12,6 +12,7 @@ if (existsSync(pathByMode)) {
 
 export const env = {
   node: process.env.NODE_ENV || 'development',
+  isTest: process.env.NODE_ENV === 'test',
   app: {
     dirs: {
       controllers: getOsPaths('CONTROLLERS'),
