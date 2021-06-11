@@ -1,23 +1,19 @@
 import {Logger} from 'lib/logger';
-import {BootstrapConfig, BootstrapSettings} from './types';
+import {pick, assign} from 'lodash';
+import {BootstrapConfig, IBootstrapSettings} from './types';
 
 const log = new Logger(__filename);
 
-export function bootstrapApp(config: BootstrapConfig): BootstrapSettings {
-  const settings: BootstrapSettings = {
-    setData(key, data) {
-      this[key] = data;
+export function bootstrapApp(config: BootstrapConfig): IBootstrapSettings {
+  const settings: IBootstrapSettings = {
+    setData(obj) {
+      assign(this, obj);
     },
-    getData(key) {
-      return this[key];
+    getData(...keys) {
+      return pick(this, keys);
     },
     onShutdown() {
       return null;
-    },
-    setShutdown(handler) {
-      if (typeof handler === 'function') {
-        this.onShutdown = handler;
-      }
     },
   };
 

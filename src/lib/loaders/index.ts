@@ -1,6 +1,6 @@
 export {
   BootstrapLoader,
-  BootstrapSettings,
+  IBootstrapSettings,
   BootstrapConfig,
 } from './types';
 export {bootstrapApp} from './bootstrap';

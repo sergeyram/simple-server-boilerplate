@@ -20,7 +20,9 @@ export const typeormLoader: BootstrapLoader = async (settings) => {
   const connection = await createConnection(connectionOptions);
 
   if (settings) {
-    settings.setData('connection', connection);
-    settings.setShutdown(() => connection.close());
+    settings.setData({
+      connection,
+      onShutdown: () => connection.close(),
+    });
   }
 };

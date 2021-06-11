@@ -1,7 +1,6 @@
-import {Application} from 'express';
-import {createExpressServer} from 'routing-controllers';
-import {BootstrapLoader} from 'lib/loaders';
 import {env} from 'src/env';
+import {BootstrapLoader} from 'lib/loaders';
+import {createExpressServer} from 'routing-controllers';
 
 export const expressServerLoader: BootstrapLoader = (settings) => {
   const app = createExpressServer({
@@ -10,8 +9,12 @@ export const expressServerLoader: BootstrapLoader = (settings) => {
 
   if (!env.isTest) {
     const server = app.listen(3000);
-    settings.setData('express_server', server);
+    settings.setData({
+      expressServer: server,
+    });
   }
 
-  settings.setData<Application>('express_app', app);
+  settings.setData({
+    expressApp: app,
+  });
 };
