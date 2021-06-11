@@ -1,0 +1,12 @@
+version: '3.2'
+
+services:
+  db:
+    image: postgres
+    container_name: app_db
+    ports:
+      - "37001:5432"
+    environment:
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker
+      POSTGRES_DB: app_db

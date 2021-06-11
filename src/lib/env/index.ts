@@ -1,1 +1,7 @@
-export {getOsEnv, getOsPaths} from './utils';
+export {
+  toBool,
+  toNumber,
+  getOsEnv,
+  getOsPaths,
+  getOsEnvOptional,
+} from './utils';

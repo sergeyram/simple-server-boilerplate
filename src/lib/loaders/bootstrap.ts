@@ -11,6 +11,14 @@ export function bootstrapApp(config: BootstrapConfig): BootstrapSettings {
     getData(key) {
       return this[key];
     },
+    onShutdown() {
+      return null;
+    },
+    setShutdown(handler) {
+      if (typeof handler === 'function') {
+        this.onShutdown = handler;
+      }
+    },
   };
 
   const {loaders} = config;

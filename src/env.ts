@@ -1,7 +1,9 @@
 import path from 'path';
 import * as dotenv from 'dotenv';
 import {existsSync} from 'fs';
-import {getOsEnv, getOsPaths} from 'lib/env';
+import {
+  getOsEnv, getOsEnvOptional, getOsPaths, toBool, toNumber,
+} from 'lib/env';
 
 const pathByMode = path.resolve(process.cwd(), `.env.${process.env.NODE_ENV}`);
 if (existsSync(pathByMode)) {
@@ -16,9 +18,20 @@ export const env = {
   app: {
     dirs: {
       controllers: getOsPaths('CONTROLLERS'),
+      entities: getOsPaths('TYPEORM_ENTITIES'),
     },
   },
   log: {
     level: getOsEnv('LOG_LEVEL'),
+  },
+  db: {
+    type: getOsEnv('TYPEORM_CONNECTION'),
+    host: getOsEnvOptional('TYPEORM_HOST'),
+    port: toNumber(getOsEnvOptional('TYPEORM_PORT')),
+    username: getOsEnvOptional('TYPEORM_USERNAME'),
+    password: getOsEnvOptional('TYPEORM_PASSWORD'),
+    database: getOsEnv('TYPEORM_DATABASE'),
+    synchronize: toBool(getOsEnvOptional('TYPEORM_SYNCHRONIZE')),
+    logging: getOsEnv('TYPEORM_LOGGING'),
   },
 };

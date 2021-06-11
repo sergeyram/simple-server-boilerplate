@@ -1,16 +1,23 @@
 import {
   Controller, Param, Body, Get, Post, Put, Delete,
 } from 'routing-controllers';
-import {Logger} from 'lib/logger';
-
-const log = new Logger(__filename);
+import {Service} from 'typedi';
+import {UsersModel} from 'src/api/models/users.model';
+import {UsersService} from 'src/api/services/users.service';
+import {LoggerDecorator, LoggerInterface} from 'src/decorators/logger';
 
 @Controller()
+@Service()
 export class UsersController {
+  constructor(
+    private usersService: UsersService,
+    @LoggerDecorator(__filename) private log: LoggerInterface,
+  ) { }
+
   @Get('/users')
-  getAll(): string {
-    log.info('CALLED: This action returns all users');
-    return 'This action returns all users';
+  getAll(): Promise<UsersModel[]> {
+    this.log.info('CALLED: This action returns all users');
+    return this.usersService.find();
   }
 
   @Get('/users/:id')
