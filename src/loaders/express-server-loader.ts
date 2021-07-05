@@ -5,6 +5,7 @@ import {createExpressServer} from 'routing-controllers';
 export const expressServerLoader: BootstrapLoader = (settings) => {
   const app = createExpressServer({
     controllers: env.app.dirs.controllers,
+    routePrefix: env.app.routePrefix,
   });
 
   if (!env.isTest) {

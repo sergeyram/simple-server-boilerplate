@@ -16,6 +16,7 @@ export const env = {
   node: process.env.NODE_ENV || 'development',
   isTest: process.env.NODE_ENV === 'test',
   app: {
+    routePrefix: getOsEnv('APP_ROUTE_PREFIX'),
     dirs: {
       controllers: getOsPaths('CONTROLLERS'),
       entities: getOsPaths('TYPEORM_ENTITIES'),
