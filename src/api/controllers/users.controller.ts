@@ -1,13 +1,12 @@
 import {
-  Controller, Param, Body, Get, Post, Put, Delete,
+  JsonController, Param, Body, Get, Post, Put, Delete,
 } from 'routing-controllers';
-import {Service} from 'typedi';
 import {UsersModel} from 'src/api/models/users.model';
 import {UsersService} from 'src/api/services/users.service';
 import {LoggerDecorator, LoggerInterface} from 'src/decorators/logger';
+import {CreateUserBody} from 'src/api/validator/users.validator';
 
-@Controller()
-@Service()
+@JsonController()
 export class UsersController {
   constructor(
     private usersService: UsersService,
@@ -26,7 +25,7 @@ export class UsersController {
   }
 
   @Post('/users')
-  post(@Body() user: unknown): string {
+  post(@Body() user: CreateUserBody): string {
     return 'Saving user...';
   }
 
